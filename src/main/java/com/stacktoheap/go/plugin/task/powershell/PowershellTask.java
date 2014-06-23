@@ -29,7 +29,7 @@ public class PowershellTask implements Task {
 
     @Override
     public TaskExecutor executor() {
-        return new com.stacktoheap.go.plugin.task.powershell.PowershellTaskExecutor();
+        return new PowershellTaskExecutor();
     }
 
     @Override
