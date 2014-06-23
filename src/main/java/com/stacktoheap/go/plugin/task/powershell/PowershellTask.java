@@ -15,6 +15,7 @@ public class PowershellTask implements Task {
     public static final String BITNESS = "Bitness";
     public static final String FILE = "File";
     public static final String NOPROFILE = "NoProfile";
+    public static final String PARAMETERS = "Parameters";
 
     @Override
     public TaskConfig config() {
@@ -22,6 +23,7 @@ public class PowershellTask implements Task {
         config.addProperty(BITNESS);
         config.addProperty(FILE);
         config.addProperty(NOPROFILE);
+        config.addProperty(PARAMETERS);
         return config;
     }
 
