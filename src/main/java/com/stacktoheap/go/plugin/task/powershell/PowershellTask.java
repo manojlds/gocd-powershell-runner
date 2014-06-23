@@ -8,6 +8,7 @@ import com.thoughtworks.go.plugin.api.task.TaskConfig;
 import com.thoughtworks.go.plugin.api.task.TaskExecutor;
 import com.thoughtworks.go.plugin.api.task.TaskView;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 @Extension
 public class PowershellTask implements Task {
@@ -52,14 +53,17 @@ public class PowershellTask implements Task {
     @Override
     public ValidationResult validate(TaskConfig configuration) {
         ValidationResult validationResult = new ValidationResult();
-        if (configuration.getValue(BITNESS) == null) {
+        String bitness = configuration.getValue(BITNESS);
+        if (StringUtils.isBlank(bitness)) {
             validationResult.addError(new ValidationError(BITNESS, "Bitness cannot be null"));
         }
 
-        if (configuration.getValue(FILE) == null) {
+        String scriptFile = configuration.getValue(FILE);
+        if (StringUtils.isBlank(scriptFile)) {
             validationResult.addError(new ValidationError(FILE, "Script to be run cannot be empty"));
         }
 
         return validationResult;
     }
+
 }
