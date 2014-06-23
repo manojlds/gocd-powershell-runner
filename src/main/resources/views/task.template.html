@@ -5,3 +5,15 @@
     <option value="x64">x64</option>
   </select>
 </div>
+<div class="form_item_block">
+    <label>Script (.ps1 file):<span class="asterisk">*</span></label>
+    <input type="text" ng-model="File">
+    </input>
+</div>
+<div class="form_item_block">
+    <label>Additional options:</label>
+    <div class="checkbox_row">
+        <input id="noprofile" type="checkbox" ng-model="NoProfile" ng-true-value="true" ng-false-value="false">
+        <label for="noprofile">Add -NoProfile to skip loading of the profile</label>
+    </div>
+</div>

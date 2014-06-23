@@ -12,11 +12,15 @@ import org.apache.commons.io.IOUtils;
 @Extension
 public class PowershellTask implements Task {
     public static final String BITNESS = "Bitness";
+    public static final String FILE = "File";
+    public static final String NOPROFILE = "NoProfile";
 
     @Override
     public TaskConfig config() {
         TaskConfig config = new TaskConfig();
         config.addProperty(BITNESS);
+        config.addProperty(FILE);
+        config.addProperty(NOPROFILE);
         return config;
     }
 
@@ -50,6 +54,10 @@ public class PowershellTask implements Task {
         ValidationResult validationResult = new ValidationResult();
         if (configuration.getValue(BITNESS) == null) {
             validationResult.addError(new ValidationError(BITNESS, "Bitness cannot be null"));
+        }
+
+        if (configuration.getValue(FILE) == null) {
+            validationResult.addError(new ValidationError(FILE, "Script to be run cannot be empty"));
         }
 
         return validationResult;
