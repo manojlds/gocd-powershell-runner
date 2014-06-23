@@ -57,7 +57,7 @@ public class PowershellTask implements Task {
         ValidationResult validationResult = new ValidationResult();
         String bitness = configuration.getValue(BITNESS);
         if (StringUtils.isBlank(bitness)) {
-            validationResult.addError(new ValidationError(BITNESS, "Bitness cannot be null"));
+            validationResult.addError(new ValidationError(BITNESS, "Bitness must be specified"));
         }
 
         String scriptFile = configuration.getValue(FILE);
