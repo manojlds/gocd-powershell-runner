@@ -14,8 +14,10 @@ import org.apache.commons.lang3.StringUtils;
 public class PowershellTask implements Task {
     public static final String BITNESS = "Bitness";
     public static final String FILE = "File";
+    public static final String MODE = "Mode";
     public static final String NOPROFILE = "NoProfile";
     public static final String BYPASS = "Bypass";
+    public static final String NOLOGO = "NoLogo";
     public static final String PARAMETERS = "Parameters";
 
     @Override
@@ -23,8 +25,10 @@ public class PowershellTask implements Task {
         TaskConfig config = new TaskConfig();
         config.addProperty(BITNESS);
         config.addProperty(FILE);
+        config.addProperty(MODE);
         config.addProperty(NOPROFILE);
         config.addProperty(BYPASS);
+        config.addProperty(NOLOGO);
         config.addProperty(PARAMETERS);
         return config;
     }
@@ -67,7 +71,11 @@ public class PowershellTask implements Task {
             validationResult.addError(new ValidationError(FILE, "Script to be run cannot be empty"));
         }
 
+        String executionMode = configuration.getValue(MODE);
+        if (StringUtils.isBlank(executionMode)) {
+            validationResult.addError(new ValidationError(MODE, "Execution mode must be specified"));
+        }
+
         return validationResult;
     }
-
 }

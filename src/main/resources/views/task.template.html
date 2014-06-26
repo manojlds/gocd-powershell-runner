@@ -13,6 +13,15 @@
     <span class="form_error" ng-show="GOINPUTNAME[File].$error.server">{{ GOINPUTNAME[File].$error.server }}</span>
 </div>
 <div class="form_item_block">
+    <label>Script execution mode:<span class="asterisk">*</span></label>
+    <select ng-model="Mode" style="float: left;">
+        <option value="">-- Choose mode --</option>
+        <option value="File">Pass the script to Powershell using -File argument</option>
+        <option value="Command">Put the script into Powershell stdin using -Command - argument</option>
+    </select>
+    <span class="form_error" ng-show="GOINPUTNAME[Mode].$error.server">{{ GOINPUTNAME[Mode].$error.server }}</span>
+</div>
+<div class="form_item_block">
     <label>Additional options:</label>
     <div class="checkbox_row">
         <input id="noprofile" type="checkbox" ng-model="NoProfile" ng-true-value="true" ng-false-value="false">
@@ -21,6 +30,10 @@
     <div class="checkbox_row">
         <input id="bypass" type="checkbox" ng-model="Bypass" ng-true-value="true" ng-false-value="false">
         <label for="bypass">Bypass execution policy</label>
+    </div>
+    <div class="checkbox_row">
+        <input id="nologo" type="checkbox" ng-model="NoLogo" ng-true-value="true" ng-false-value="false">
+        <label for="nologo">Start Powershell without logo</label>
     </div>
 </div>
 <div class="form_item_block">
