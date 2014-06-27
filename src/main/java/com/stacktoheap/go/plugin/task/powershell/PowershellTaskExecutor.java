@@ -22,7 +22,7 @@ public class PowershellTaskExecutor implements TaskExecutor {
         ProcessBuilder powershell = createPowershellCommand(taskExecutionContext, taskConfig);
 
         Console console = taskExecutionContext.console();
-        console.printLine("Launching command: " + powershell.command());
+        console.printLine("Launching command: " + StringUtils.join(powershell.command(), " "));
 
         try {
             Process process = powershell.start();
@@ -53,13 +53,14 @@ public class PowershellTaskExecutor implements TaskExecutor {
             String file = taskConfig.getValue(PowershellTask.FILE);
             File workingDir = new File(taskExecutionContext.workingDir());
             File script = new File(workingDir, file);
-            InputStream fis = new FileInputStream(script);
+            InputStream fis = new FileInputStream(script.getAbsolutePath());
             byte[] buffer = new byte[1024];
             int read;
             while((read = fis.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, read);
             }
             fis.close();
+            outputStream.close();
         }
     }
 
