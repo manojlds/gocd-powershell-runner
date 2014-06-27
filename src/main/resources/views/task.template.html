@@ -9,7 +9,7 @@
 </div>
 <div class="form_item_block">
     <label>Script (.ps1 file):<span class="asterisk">*</span></label>
-    <input type="text" ng-model="File"></input>
+    <input type="text" ng-model="File">
     <span class="form_error" ng-show="GOINPUTNAME[File].$error.server">{{ GOINPUTNAME[File].$error.server }}</span>
 </div>
 <div class="form_item_block">
@@ -20,6 +20,10 @@
         <option value="Command">Put the script into Powershell stdin using -Command - argument</option>
     </select>
     <span class="form_error" ng-show="GOINPUTNAME[Mode].$error.server">{{ GOINPUTNAME[Mode].$error.server }}</span>
+</div>
+<div class="form_item_block" ng-show="Mode == 'File'">
+    <label>Arguments to script:</label>
+    <input type="text" ng-model="ScriptParameters">
 </div>
 <div class="form_item_block">
     <label>Additional options:</label>
@@ -38,5 +42,5 @@
 </div>
 <div class="form_item_block">
     <label>Other parameters to powershell.exe:</label>
-    <input type="text" ng-model="Parameters"></input>
+    <input type="text" ng-model="Parameters">
 </div>

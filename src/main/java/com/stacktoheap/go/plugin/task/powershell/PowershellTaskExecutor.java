@@ -27,7 +27,7 @@ public class PowershellTaskExecutor implements TaskExecutor {
         try {
             Process process = powershell.start();
 
-            PutScriptIntoPowershellStdin(taskConfig, process);
+            PutScriptIntoPowershellStdin(taskExecutionContext, taskConfig, process);
 
             console.readErrorOf(process.getErrorStream());
             console.readOutputOf(process.getInputStream());
@@ -46,12 +46,14 @@ public class PowershellTaskExecutor implements TaskExecutor {
         return ExecutionResult.success("Build Success");
     }
 
-    private void PutScriptIntoPowershellStdin(TaskConfig taskConfig, Process process) throws IOException {
+    private void PutScriptIntoPowershellStdin(TaskExecutionContext taskExecutionContext, TaskConfig taskConfig, Process process) throws IOException {
         String executionMode = taskConfig.getValue(PowershellTask.MODE);
         if(executionMode.equals("Command")) {
             OutputStream outputStream = process.getOutputStream();
             String file = taskConfig.getValue(PowershellTask.FILE);
-            InputStream fis = new FileInputStream(file);
+            File workingDir = new File(taskExecutionContext.workingDir());
+            File script = new File(workingDir, file);
+            InputStream fis = new FileInputStream(script);
             byte[] buffer = new byte[1024];
             int read;
             while((read = fis.read(buffer)) != -1) {
@@ -82,6 +84,10 @@ public class PowershellTaskExecutor implements TaskExecutor {
         if(executionMode.equals("File")) {
             command.add("-File");
             command.add(scriptFile);
+
+            String scriptParameters = taskConfig.getValue(PowershellTask.SCRIPTPARAMETERS);
+            ConvertToParameterList(command, scriptParameters);
+
         } else {
             command.add("-Command");
             command.add("-");
@@ -106,6 +112,10 @@ public class PowershellTaskExecutor implements TaskExecutor {
             command.add("-NoLogo");
         }
 
+        ConvertToParameterList(command, parameters);
+    }
+
+    private void ConvertToParameterList(List<String> command, String parameters) {
         if (!StringUtils.isBlank(parameters)) {
             for (String parameter : parameters.split("\\s+")) {
                 command.add(parameter);

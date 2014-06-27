@@ -19,6 +19,7 @@ public class PowershellTask implements Task {
     public static final String BYPASS = "Bypass";
     public static final String NOLOGO = "NoLogo";
     public static final String PARAMETERS = "Parameters";
+    public static final String SCRIPTPARAMETERS = "ScriptParameters";
 
     @Override
     public TaskConfig config() {
@@ -30,6 +31,7 @@ public class PowershellTask implements Task {
         config.addProperty(BYPASS);
         config.addProperty(NOLOGO);
         config.addProperty(PARAMETERS);
+        config.addProperty(SCRIPTPARAMETERS);
         return config;
     }
 
