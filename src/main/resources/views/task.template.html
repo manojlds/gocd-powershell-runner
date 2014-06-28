@@ -1,6 +1,6 @@
 <div class="form_item_block">
   <label>Bitness:<span class="asterisk">*</span></label>
-  <select ng-model="Bitness" style="float: left;">
+  <select ng-model="Bitness" style="float: left;" ng-required="true">
     <option value="">-- Choose Bitness --</option>
     <option value="x86">x86</option>
     <option value="x64">x64</option>
@@ -9,12 +9,12 @@
 </div>
 <div class="form_item_block">
     <label>Script (.ps1 file):<span class="asterisk">*</span></label>
-    <input type="text" ng-model="File">
+    <input type="text" ng-model="File" ng-required="true">
     <span class="form_error" ng-show="GOINPUTNAME[File].$error.server">{{ GOINPUTNAME[File].$error.server }}</span>
 </div>
 <div class="form_item_block">
     <label>Script execution mode:<span class="asterisk">*</span></label>
-    <select ng-model="Mode" style="float: left;">
+    <select ng-model="Mode" style="float: left;" ng-required="true">
         <option value="">-- Choose mode --</option>
         <option value="File">Pass the script to Powershell using -File argument</option>
         <option value="Command">Put the script into Powershell stdin using -Command - argument</option>
@@ -28,15 +28,15 @@
 <div class="form_item_block">
     <label>Additional options:</label>
     <div class="checkbox_row">
-        <input id="noprofile" type="checkbox" ng-model="NoProfile" ng-true-value="true" ng-false-value="false">
+        <input id="noprofile" type="checkbox" ng-model="NoProfile" value="true" ng-true-value="true" ng-false-value="false">
         <label for="noprofile">Add -NoProfile to skip loading of the profile</label>
     </div>
     <div class="checkbox_row">
-        <input id="bypass" type="checkbox" ng-model="Bypass" ng-true-value="true" ng-false-value="false">
+        <input id="bypass" type="checkbox" ng-model="Bypass" value="true" ng-true-value="true" ng-false-value="false">
         <label for="bypass">Bypass execution policy</label>
     </div>
     <div class="checkbox_row">
-        <input id="nologo" type="checkbox" ng-model="NoLogo" ng-true-value="true" ng-false-value="false">
+        <input id="nologo" type="checkbox" ng-model="NoLogo" value="true" ng-true-value="true" ng-false-value="false">
         <label for="nologo">Start Powershell without logo</label>
     </div>
 </div>
