@@ -105,12 +105,12 @@ public class PowershellTaskExecutor implements TaskExecutor {
         if (noProfile != null && noProfile.equals("true")) {
             command.add("-NoProfile");
         }
-        if (bypassExecutionPolicy != null && bypassExecutionPolicy.equals("true")) {
-            command.add("-ExecutionPolicy ByPass");
-            command.add("ByPass");
-        }
         if (noLogo != null && noLogo.equals("true")) {
             command.add("-NoLogo");
+        }
+        if (bypassExecutionPolicy != null && bypassExecutionPolicy.equals("true")) {
+            command.add("-ExecutionPolicy");
+            command.add("ByPass");
         }
 
         ConvertToParameterList(command, parameters);
@@ -118,9 +118,7 @@ public class PowershellTaskExecutor implements TaskExecutor {
 
     private void ConvertToParameterList(List<String> command, String parameters) {
         if (!StringUtils.isBlank(parameters)) {
-            for (String parameter : parameters.split("\\s+")) {
-                command.add(parameter);
-            }
+            Collections.addAll(command, parameters.split("\\s+"));
         }
     }
 }
