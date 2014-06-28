@@ -45,7 +45,7 @@ public class PowershellTask implements Task {
         TaskView taskView = new TaskView() {
             @Override
             public String displayValue() {
-                return "Powershell Runner";
+                return "Powershell";
             }
 
             @Override

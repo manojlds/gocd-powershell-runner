@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <go-plugin id="gocd-powershell-runner" version="1">
     <about>
-        <name>Powershell Runner plugin</name>
-        <version>0.1</version>
+        <name>Powershell Task Plugin</name>
+        <version>1.0</version>
         <target-go-version>14.1.0</target-go-version>
         <description>
-            A plugin that provides a Powershell Runner
+            Task to run Powershell based builds
         </description>
         <vendor>
             <name>manojlds</name>
             <url>www.stacktoheap.com</url>
         </vendor>
+        <target-os>
+            <value>Windows</value>
+        </target-os>
     </about>
 </go-plugin>
