@@ -28,15 +28,18 @@
 <div class="form_item_block">
     <label>Additional options:</label>
     <div class="checkbox_row">
-        <input id="noprofile" type="checkbox" ng-model="NoProfile" value="true" ng-true-value="true" ng-false-value="false">
-        <label for="noprofile">Add -NoProfile to skip loading of the profile</label>
+        <input id="noprofile2" type="checkbox" ng-model="NoProfile2" ng-init="NoProfile2 = NoProfile" ng-change="NoProfile = NoProfile2" ng-true-value="true" ng-false-value="false">
+        <input id="noprofile" type="hidden" ng-model="NoProfile" value="{{NoProfile}}">
+        <label for="noprofile">Add -NoProfile to skip loading the profile</label>
     </div>
     <div class="checkbox_row">
-        <input id="bypass" type="checkbox" ng-model="Bypass" value="true" ng-true-value="true" ng-false-value="false">
+        <input id="bypass2" type="checkbox" ng-model="Bypass2" ng-init="Bypass2 = Bypass" ng-change="Bypass = Bypass2" ng-true-value="true" ng-false-value="false">
+        <input id="bypass" type="hidden" ng-model="Bypass" value="{{Bypass}}">
         <label for="bypass">Bypass execution policy</label>
     </div>
     <div class="checkbox_row">
-        <input id="nologo" type="checkbox" ng-model="NoLogo" value="true" ng-true-value="true" ng-false-value="false">
+        <input id="nologo2" type="checkbox" ng-model="NoLogo2" ng-init="NoLogo2 = NoLogo" ng-change="NoLogo = NoLogo2" ng-true-value="true" ng-false-value="false">
+        <input id="nologo" type="hidden" ng-model="NoLogo" value="{{NoLogo}}">
         <label for="nologo">Start Powershell without logo</label>
     </div>
 </div>
