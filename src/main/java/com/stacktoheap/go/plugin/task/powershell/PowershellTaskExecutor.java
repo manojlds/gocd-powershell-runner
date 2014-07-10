@@ -4,17 +4,28 @@ import com.thoughtworks.go.plugin.api.response.execution.ExecutionResult;
 import com.thoughtworks.go.plugin.api.task.*;
 import com.thoughtworks.go.plugin.api.task.Console;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.*;
 import java.util.*;
 
 public class PowershellTaskExecutor implements TaskExecutor {
 
-    private static final Map<String, String> PowershellPath = new HashMap<String, String>();
+    private static final HashMap<String, String> PowershellPath = new HashMap<String, String>();
+    private static final String BasePowershellPath = "C:\\Windows\\%s\\WindowsPowerShell\\v1.0\\powershell.exe";
 
     static {
-        PowershellPath.put("x86", "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe");
-        PowershellPath.put("x64", "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe");
+        String arch = System.getProperty("os.arch");
+        Boolean is64bit = arch.contains("64");
+
+        if(is64bit) {
+            PowershellPath.put("x86", String.format(BasePowershellPath, "SysWOW64"));
+            PowershellPath.put("x64", String.format(BasePowershellPath, "system32"));
+        } else {
+            PowershellPath.put("x86", String.format(BasePowershellPath, "system32"));
+            PowershellPath.put("x64", String.format(BasePowershellPath, "sysnative"));
+        }
     }
 
     @Override
