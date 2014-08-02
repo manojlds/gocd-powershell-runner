@@ -51,6 +51,7 @@ public class PowershellTaskExecutor implements TaskExecutor {
             }
         }
         catch(Exception e) {
+            console.printLine(e.getMessage());
             return ExecutionResult.failure("Failed while running Powershell task ", e);
         }
 
@@ -129,7 +130,7 @@ public class PowershellTaskExecutor implements TaskExecutor {
 
     private void ConvertToParameterList(List<String> command, String parameters) {
         if (!StringUtils.isBlank(parameters)) {
-            Collections.addAll(command, parameters.split("\\s+"));
+            Collections.addAll(command, parameters.split("[\r\n]+"));
         }
     }
 }

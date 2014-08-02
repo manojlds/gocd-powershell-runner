@@ -23,7 +23,7 @@
 </div>
 <div class="form_item_block" ng-show="Mode == 'File'">
     <label>Arguments to script:</label>
-    <input type="text" ng-model="ScriptParameters">
+    <textarea ng-model="ScriptParameters" wrap="off" style="width: 250px; resize: both;" cols="58" autocomplete="off"></textarea>
 </div>
 <div class="form_item_block">
     <label>Additional options:</label>
@@ -45,5 +45,5 @@
 </div>
 <div class="form_item_block">
     <label>Other parameters to powershell.exe:</label>
-    <input type="text" ng-model="Parameters">
+    <textarea ng-model="Parameters" wrap="off" style="width: 250px; resize: both;" cols="58" autocomplete="off"></textarea>
 </div>
