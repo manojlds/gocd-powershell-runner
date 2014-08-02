@@ -2,7 +2,7 @@
 <go-plugin id="gocd-powershell-runner" version="1">
     <about>
         <name>Powershell Task Plugin</name>
-        <version>1.1</version>
+        <version>1.2</version>
         <target-go-version>14.1.0</target-go-version>
         <description>
             Task to run Powershell based builds
