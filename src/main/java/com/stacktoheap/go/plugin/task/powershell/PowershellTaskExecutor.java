@@ -84,8 +84,12 @@ public class PowershellTaskExecutor implements TaskExecutor {
         AddPowershellArguments(taskConfig, command);
         AddScript(taskConfig, command);
 
+		Map<String, String> environmentVariables = taskContext.environment().asMap();
+		
         ProcessBuilder processBuilder = new ProcessBuilder(command);
-
+		if (environmentVariables != null && !environmentVariables.isEmpty()) {
+            processBuilder.environment().putAll(environmentVariables);
+        }
         processBuilder.directory(new File(taskContext.workingDir()));
         return processBuilder;
     }
