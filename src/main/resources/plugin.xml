@@ -12,6 +12,8 @@
             <url>www.stacktoheap.com</url>
         </vendor>
         <target-os>
+            <value>Linux</value>
+            <value>Mac OS X</value>
             <value>Windows</value>
         </target-os>
     </about>
